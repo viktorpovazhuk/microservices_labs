@@ -1,3 +1,5 @@
-facade-service/__pycache__/*
-logging-service/__pycache__/*
-messages-service/__pycache__/*
+facade/__pycache__/*
+logging/__pycache__/*
+messages/__pycache__/*
+model/__pycache__/*
+examples/

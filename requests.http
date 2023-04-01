@@ -4,3 +4,7 @@ content-type: application/json
 {
     "text": "hi"
 }
+
+###
+
+GET http://localhost:8000/ HTTP/1.1
