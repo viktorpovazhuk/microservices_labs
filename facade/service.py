@@ -8,19 +8,25 @@ sys.path.append(APP_DIR)
 from model.message import LoggingMessage, MessageDTO
 from fastapi import status
 import requests
+import random
 
-LOGGING_URL = "http://localhost:8001/"
-MESSAGES_URL = "http://localhost:8002/"
+LOGGING_URLS = ["http://localhost:8002/",
+                "http://localhost:8003/",
+                "http://localhost:8004/"]
+MESSAGES_URL = "http://localhost:8001/"
+
 
 def post_message_log(msg_text: str):
     log_msg = LoggingMessage(msg_text)
-    log_response = requests.post(LOGGING_URL, json=log_msg.__dict__)
+    log_url = random.choice(LOGGING_URLS)
+    log_response = requests.post(log_url, json=log_msg.__dict__)
     status_code = log_response.status_code
     return status_code
 
 def get_messages_services():
+    log_url = random.choice(LOGGING_URLS)
     try:
-        log_response = requests.get(LOGGING_URL)
+        log_response = requests.get(log_url)
     except:
         raise Exception(500)
     if log_response.status_code != status.HTTP_200_OK:

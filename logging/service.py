@@ -1,4 +1,3 @@
-import mem_repository
 import sys
 import os
 
@@ -7,13 +6,15 @@ APP_DIR = os.path.dirname(SCRIPT_DIR)
 sys.path.append(APP_DIR)
 
 from model.message import LoggingMessage
+import hazelcast_repository
 
 
 def log_message(msg_dto):
     msg = LoggingMessage.from_msg_dto(msg_dto)
-    mem_repository.add(msg)
+    hazelcast_repository.add(msg)
 
 
 def get_messages():
-    messages = mem_repository.get_all()
+    messages = hazelcast_repository.get_all()
     return messages
+
