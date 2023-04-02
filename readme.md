@@ -1,6 +1,22 @@
 # Microservices with Hazelcast
 
-## Preparing
+## Prerequisites
+
+Create and activate virtual environment.
+
+```
+$ cd microservices_labs
+$ python3 -m venv venv
+$ . venv/bin/activate
+```
+
+Install necessary packages.
+
+```
+$ pip install -r requirements.txt
+```
+
+## Preparation
 
 Start 3 instances of Hazelcast nodes from its directory.
 

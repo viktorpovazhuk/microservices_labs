@@ -3,3 +3,5 @@ logging/__pycache__/*
 messages/__pycache__/*
 model/__pycache__/*
 examples/
+venv/
+.vscode/
