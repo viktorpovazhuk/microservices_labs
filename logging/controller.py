@@ -7,7 +7,7 @@ APP_DIR = os.path.dirname(SCRIPT_DIR)
 sys.path.append(APP_DIR)
 
 
-from model.message import LoggingMessage, MessageDTO
+from model.message import Message, MessageDTO
 from fastapi import Body, FastAPI
 
 

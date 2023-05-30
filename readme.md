@@ -26,7 +26,25 @@ $ cd hazelcast
 $ bin/start.sh
 ```
 
-Then run 3 instancees of logging service and all other services from corresponding project directories.
+Run Management Center from Hazelcast directory to view changes on nodes.
+
+```
+$ cd hazelcast
+$ management-center/bin/hz-mc start
+```
+
+Start Kafka and prepare "messages" topic.
+
+```
+$ cd kafka
+$ bin/zookeeper-server-start.sh config/zookeeper.properties
+$ bin/kafka-server-start.sh config/server.properties
+$ bin/kafka-topics.sh --create --topic messages --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1
+```
+
+To view topic content install Offset Explorer and connect to cluster.
+
+Then run 3 instancees of logging service, 2 instances of messages service and facade service from corresponding project directories.
 
 ```
 $ cd microservices_labs
@@ -34,18 +52,12 @@ $ cd facade
 $ uvicorn controller:app --reload --port 8000
 
 $ cd ../messages
-$ uvicorn controller:app --reload --port 8001
+# repeat 2 times, for ports: 8004, 8005
+$ uvicorn controller:app --reload --port 8004
 
 $ cd ../logging
-# repeat 3 times for ports: 8002, 8003, 8004
-$ uvicorn controller:app --reload --port 8002
-```
-
-Run Management Center from Hazelcast directory to view changes on nodes.
-
-```
-$ cd hazelcast
-$ management-center/bin/hz-mc start
+# repeat 3 times, for ports: 8001, 8002, 8003
+$ uvicorn controller:app --reload --port 8001
 ```
 
 ## Usage
